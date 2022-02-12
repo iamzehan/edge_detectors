@@ -4,7 +4,7 @@ from cv2 import cv2 as cv
 from PIL import Image
 
 st.title ("Edge Detector")
-st.subheader("Detect Edges from Images, by using different techniques like Canny, Sobel, Laplacian & Prewitt edge detectors")
+st.markdown("Detect Edges from Images, by using different techniques like Canny, Sobel, Laplacian & Prewitt edge detectors")
 st.markdown("An example Image is given below")
 file= st.file_uploader("Upload Image")
 
@@ -24,7 +24,7 @@ def canny(img, t1,t2):
     img = cv.GaussianBlur(img, (3,3), 0)
     edges = cv.Canny(img,t1,t2)
     return edges
-edge_detector= st.selectbox("Select an Edge Detector", ["Canny", "Sobel", "Laplacian", "Prewitt"])
+edge_detector= st.selectbox("Select an Edge Detector", ["None Selected","Canny", "Sobel", "Laplacian", "Prewitt"])
 
 def sobel(img):
     img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -46,8 +46,9 @@ def laplacian(img):
     laplacian = cv.Laplacian(img,cv.CV_8U)
     return laplacian
 if edge_detector == "Canny":
-    min_threshold=st.slider(min_value=0, max_value=200,label='min_threshold')
-    max_threshold=st.slider(min_value=0, max_value= 200, label='max_threshold')
+    st.subheader("Select Threshold values")
+    min_threshold=st.slider(min_value=0, max_value=200,label='Minimum Threshold')
+    max_threshold=st.slider(min_value=0, max_value= 200, label='Maximum Threshold')
     st.image([img,canny(img, min_threshold, max_threshold)], caption=['Original', 'Canny'], width=200)
 elif edge_detector == "Sobel":
     col1, col2 = st.columns(2)
@@ -67,5 +68,23 @@ elif edge_detector == "Prewitt":
         st.image([i for i in prewitt(img)], caption=["Prewitt X", "Prewitt Y"], width=180)
 elif edge_detector == "Laplacian":
     st.image([img,laplacian(img)],caption=["Original", "Laplacian"],width=200)
+else:
+    st.subheader("Select from the drop down box")
 
 
+
+
+
+
+
+hide_streamlit_style = """
+            <head>
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer{color:tomato;}
+            </style>
+            <title> Edge Detectors </title>
+            </head>
+            <footer class="css-1lsmgbg egzxvld4">© Made by <a href="codingwithzk.netlify.app" class="css-z3au9t egzxvld3">Md. Ziaul Karim</a></footer>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
