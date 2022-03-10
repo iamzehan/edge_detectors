@@ -1,3 +1,9 @@
-footer.css-1lsmgbg egzxvld4{
-    display: block;
+.css-1lsmgbg {
+    display: none;
+    color: rgba(250, 250, 250, 0.4);
+    flex: 0 1 0%;
+    font-size: 14px;
+    max-width: 46rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
 }

@@ -2,10 +2,10 @@ import streamlit as st
 import numpy as np
 from cv2 import cv2 as cv
 from PIL import Image
-
+st.set_page_config(page_icon="./favicon.png", page_title="Edge Detector - Ziaul Karim")
 st.title ("Edge Detector")
-st.markdown("Detect Edges from Images, by using different techniques like Canny, Sobel, Laplacian & Prewitt edge detectors")
-st.markdown("An example Image is given below")
+st.markdown("Detect Edges from Images, by using different techniques like 👉 Canny, Sobel, Laplacian & Prewitt Edge Detectors.")
+st.markdown("An example Image is given below 👇")
 file= st.file_uploader("Upload Image")
 
 @st.cache()
@@ -24,7 +24,7 @@ def canny(img, t1,t2):
     img = cv.GaussianBlur(img, (3,3), 0)
     edges = cv.Canny(img,t1,t2)
     return edges
-edge_detector= st.selectbox("Select an Edge Detector", ["None Selected","Canny", "Sobel", "Laplacian", "Prewitt"])
+edge_detector= st.selectbox("Select an Edge Detector", ["Click here to select...","Canny", "Sobel", "Laplacian", "Prewitt"])
 
 def sobel(img):
     img_gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -69,22 +69,26 @@ elif edge_detector == "Prewitt":
 elif edge_detector == "Laplacian":
     st.image([img,laplacian(img)],caption=["Original", "Laplacian"],width=200)
 else:
-    st.subheader("Select from the drop down box")
-
-
-
-
-
+    st.markdown("You haven't selected anything from the dropdown box yet.")
 
 
 hide_streamlit_style = """
             <head>
+            <link rel="shortcut icon" href="./favicon.png">
             <style>
-            #MainMenu {visibility: hidden;}
-            footer{color:tomato;}
+            #MainMenu{visibility: hidden;}
+            .css-fk4es0{display:none;}
+            .css-1lsmgbg {display: none;}
+            .myFooter{color:#fff; margin-top: 150px; text-align: center;}
+            .myFooter a{color: #DB8962; font-weight: bolder;}
+            .css-10trblm{color:#DB8962; text-align:center;}
+            .css-16huue1 {color:#DB8962; font-size:18px;}
+            .css-v37k9u p{color:#edf5e1; font-size: 18px;}
+            .css-1q8dd3e{color:#DB8962;}
+            .css-1q8dd3e:hover{color:#edf5e1; border-color:#DB8962;}
             </style>
             <title> Edge Detectors </title>
             </head>
-            <footer class="css-1lsmgbg egzxvld4">© Made by <a href="codingwithzk.netlify.app" class="css-z3au9t egzxvld3">Md. Ziaul Karim</a></footer>
+            <div class="myFooter">© 2022 Copyright | Made by <a href="https://codingwithzk.netlify.app" >Md. Ziaul Karim</a> <br> with <a href="https://streamlit.io/"> Streamlit </a> </div>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
